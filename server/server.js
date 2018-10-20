@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const errorHandler = require('errorhandler');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -13,8 +14,10 @@ const app = express();
 // Configure our app
 app.use(bodyParser.urlencoded({
   extended: false
-}))
-app.use(bodyParser.json())
+}));
+app.use(bodyParser.json());
+app.use(express.static(path.resolve(__dirname, '../public')));
+console.log(__dirname + '/../public');
 
 if (!isProduction) {
   app.use(errorHandler())
