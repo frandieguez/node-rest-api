@@ -8,21 +8,21 @@ let checkToken = (req, res, next) => {
       return res.status(401).json({
         ok: false,
         err: {
-          message: 'Authentication required or invalid'
+          message: 'Authentication required or invalid, jwt token not valid.'
         }
       })
     }
 
-    req.usuario = decoded.usuario
+    req.user = decoded.user
 
     next()
   })
 }
 
 checkAdminRole = (req, res, next) => {
-  let usuario = req.usuario;
+  let user = req.user;
 
-  if (usuario.role !== 'ADMIN_ROLE') {
+  if (user.role !== 'ADMIN_ROLE') {
     return res.status(401).json({
       ok: false,
       err: {

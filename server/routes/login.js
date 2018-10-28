@@ -6,7 +6,7 @@ const {
 } = require('google-auth-library');
 const client = new OAuth2Client(process.env.GSING_CLIENT_ID);
 
-const Usuario = require('../models/usuario');
+const User = require('../models/user');
 const app = express();
 
 // Configureaciones de google
@@ -29,9 +29,9 @@ app.post('/login', (req, res) => {
 
   let body = req.body;
 
-  Usuario.findOne({
+  User.findOne({
     email: body.email
-  }, (err, usuarioDB) => {
+  }, (err, userDB) => {
     if (err) {
       return res.status(500).json({
         ok: false,
@@ -39,26 +39,27 @@ app.post('/login', (req, res) => {
       })
     }
 
-    if (!usuarioDB) {
+    if (!userDB) {
       return res.status(400).json({
         ok: false,
         err: {
-          mensaje: '(Usuario) o contraseña incorrectos'
+          mensaje: '(User) or password incorrect'
         }
       })
     }
 
-    if (!bcrypt.compareSync(body.password, usuarioDB.password)) {
+    if (!bcrypt.compareSync(body.password, userDB.password)) {
+      // if (body.password == userDB.password) {
       return res.status(400).json({
         ok: false,
         err: {
-          message: 'Usuario o (contraseña) incorrectos'
+          message: 'User or (password) incorrect'
         }
       })
     }
 
     let token = jwt.sign({
-      usuario: usuarioDB
+      user: userDB
     }, process.env.JWT_SEED, {
       expiresIn: process.env.JWT_EXPIRE
     })
@@ -66,7 +67,7 @@ app.post('/login', (req, res) => {
 
     res.json({
       ok: true,
-      usuario: usuarioDB,
+      user: userDB,
       token
     })
   });
@@ -82,9 +83,9 @@ app.post('/google', async (req, res) => {
     })
   })
 
-  Usuario.findOne({
+  User.findOne({
     email: googleUser.email
-  }, (err, usuarioDB) => {
+  }, (err, userDB) => {
     if (err) {
       res.status(500).json({
         ok: false,
@@ -92,53 +93,53 @@ app.post('/google', async (req, res) => {
       })
     }
 
-    if (usuarioDB) {
-      if (usuarioDB.google == false) {
+    if (userDB) {
+      if (userDB.google == false) {
         res.status(400).json({
           ok: false,
           err: {
-            message: 'Debe autenticarse con un usuario normal'
+            message: 'You must authenticate with the normal login'
           }
         })
       } else {
         let token = jwt.sign({
-          usuario: usuarioDB
+          user: userDB
         }, process.env.JWT_SEED, {
           expiresIn: process.env.JWT_EXPIRE
         })
 
         res.json({
           ok: true,
-          usuario: usuarioDB,
+          usuario: userDB,
           token
         })
       }
     } else {
-      // Usuario no existe nen la BD
-      let usuario = new Usuario;
-      usuario.nombre = googleUser.name;
+      // User no existe nen la BD
+      let usuario = new User;
+      usuario.name = googleUser.name;
       usuario.email = googleUser.email;
       usuario.img = googleUser.img;
       usuario.google = true;
       usuario.password = ':)';
 
-      usuario.save((err, usuarioDB) => {
+      usuario.save((err, userDB) => {
         if (err) {
           res.status(400).json({
             ok: true,
-            usuarioDB
+            userDB
           })
         }
 
         let token = jwt.sign({
-          usuario: usuarioDB
+          user: userDB
         }, process.env.JWT_SEED, {
           expiresIn: process.env.JWT_EXPIRE
         })
 
         res.json({
           ok: true,
-          usuario: usuarioDB,
+          user: userDB,
           token
         })
       })
