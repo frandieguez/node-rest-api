@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 const errorHandler = require('errorhandler');
 const path = require('path');
 
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../public')));
-console.log(__dirname + '/../public');
+app.use(fileUpload());
 
 if (!isProduction) {
   app.use(errorHandler())
