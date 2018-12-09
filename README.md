@@ -23,29 +23,15 @@ cp .env.example .env
 vim .env # edit your parameters
 npm install
 docker-compose up -d
-npm start
+npm run start-dev
 ```
 
 Then you will be able to get information from http://localhost:3000
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+npm test
 ```
 
 ## Deployment
@@ -53,9 +39,10 @@ Give an example
 There is a docker composer to ease the deployment in local machines.
 
 ## Built With
-* [JWT(https://jwt.io)] - JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties.
-* [NodeJS(https://nodejs.org/) - Language and VM
-* [Express](https://expressjs.com/) - Node.js Express framework
+
+- [JWT(https://jwt.io)] - JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties.
+- [NodeJS(https://nodejs.org/) - Language and VM
+- [Express](https://expressjs.com/) - Node.js Express framework
 
 ## Contributing
 
@@ -63,11 +50,11 @@ Please read [CONTRIBUTING.md](https://gist.github.com/frandieguez/6e0fe20139abc0
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/frandieguez/node-restserver-api/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/frandieguez/node-restserver-api/tags).
 
 ## Authors
 
-* **Fran Dieguez** - *Initial work* - [frandieguez](https://github.com/frandieguez)
+- **Fran Dieguez** - _Initial work_ - [frandieguez](https://github.com/frandieguez)
 
 See also the list of [contributors](https://github.com/frandieguez/node-restserver-api/contributors) who participated in this project.
 
@@ -77,7 +64,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc
