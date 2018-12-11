@@ -3,6 +3,29 @@ const jwt = require('jsonwebtoken');
 let checkToken = (req, res, next) => {
   let token = req.get('Authorization');
 
+  if (token === undefined) {
+    token = req.query.token;
+  }
+
+  jwt.verify(token, process.env.JWT_SEED, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({
+        ok: false,
+        err: {
+          message: 'Authentication required or invalid, jwt token not valid.'
+        }
+      })
+    }
+
+    req.user = decoded.user
+
+    next()
+  })
+}
+
+let checkTokenImg = (req, res, next) => {
+  let token = req.query.token;
+
   jwt.verify(token, process.env.JWT_SEED, (err, decoded) => {
     if (err) {
       return res.status(401).json({
@@ -36,5 +59,6 @@ checkAdminRole = (req, res, next) => {
 
 module.exports = {
   checkToken,
+  checkTokenImg,
   checkAdminRole
 }
