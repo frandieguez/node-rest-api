@@ -1,4 +1,4 @@
-# Node REEST API backed by express + JWT + MongoDB
+# Node REST API backed by express + JWT + MongoDB
 
 This projects its just an example of creating a node.js api using different technologies
 
