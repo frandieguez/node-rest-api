@@ -43,7 +43,7 @@ app.post('/login', (req, res) => {
       return res.status(400).json({
         ok: false,
         err: {
-          mensaje: '(User) or password incorrect'
+          message: '(User) or password incorrect'
         }
       })
     }
