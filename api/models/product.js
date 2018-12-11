@@ -6,6 +6,9 @@ var productSchema = new Schema({
     type: String,
     required: [true, 'The name is required']
   },
+  img: {
+    type: String
+  },
   unitPrice: {
     type: Number,
     required: [true, 'The unit price is required']
