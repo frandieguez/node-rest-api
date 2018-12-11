@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node api/server.js",
-    "start-dev": "./node_modules/.bin/nodemon api/server.js",
+    "start-dev": "docker-compose up -d; ./node_modules/.bin/nodemon api/server.js",
     "test": "./node_modules/.bin/jest"
   },
   "author": "",
