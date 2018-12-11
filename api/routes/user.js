@@ -17,6 +17,7 @@ app.get('/user', checkToken, function (req, res) {
   let conditions = {
     status: true
   };
+  console.log(offset, limit)
 
   User.find(conditions, 'name email role status google img')
     .skip(offset)
