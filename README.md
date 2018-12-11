@@ -1,4 +1,6 @@
 # Node REST API backed by express + JWT + MongoDB
+[![Maintainability](https://api.codeclimate.com/v1/badges/534b7dc52af7d2bee6da/maintainability)](https://codeclimate.com/github/frandieguez/node-rest-api/maintainability) 
+[![dependencies Status](https://david-dm.org/frandieguez/node-rest-api/status.svg)](https://david-dm.org/frandieguez/node-rest-api)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 
 This projects its just an example of creating a node.js api using different technologies
 
