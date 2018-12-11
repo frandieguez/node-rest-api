@@ -15,7 +15,7 @@ app.get('/user', checkToken, function (req, res) {
   let limit = Number(req.query.limit) || 0;
 
   let conditions = {
-    estado: true
+    status: true
   };
 
   User.find(conditions, 'name email role status google img')
