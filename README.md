@@ -42,8 +42,8 @@ There is a docker composer to ease the deployment in local machines.
 
 ## Built With
 
-- [JWT(https://jwt.io)] - JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties.
-- [NodeJS(https://nodejs.org/) - Language and VM
+- [JWT](https://jwt.io) - JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties.
+- [NodeJS](https://nodejs.org/) - Language and VM
 - [Express](https://expressjs.com/) - Node.js Express framework
 
 ## Contributing
