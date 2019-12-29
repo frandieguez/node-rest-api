@@ -8,6 +8,8 @@ const path = require('path');
 require('dotenv').config();
 
 const isProduction = process.env.NODE_ENV == 'production';
+const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017'
+const port = process.env.PORT || 3000
 
 // Start the express application
 const app = express();
@@ -26,12 +28,12 @@ if (!isProduction) {
 
 app.use(require('./routes/index'));
 
-mongoose.connect(process.env.MONGO_URI, (err, res) => {
+mongoose.connect(mongoUri, (err, res) => {
   if (err) throw err;
 
   console.log('Base de datos ONLINE');
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
   console.log('Escuchando puerto: ', process.env.PORT);
 });
